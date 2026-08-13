@@ -85,6 +85,29 @@ test("경험 선택이 클릭·Enter·Space에서 작동함", async ({ page }) =
   await page.screenshot({ path: resolve(evidenceDir, "interaction-check.png"), fullPage: false });
 });
 
+test("경험과 제작 근거 본문이 화면의 위아래 중앙에 배치됨", async ({ page }) => {
+  const viewport = { width: 1366, height: 768 };
+  const errors = await captureConsole(page);
+  await page.setViewportSize(viewport);
+  await page.goto("./", { waitUntil: "networkidle" });
+
+  for (const item of [
+    { section: "#experiences", content: ".experience-inner", screenshot: "experience-centered.png" },
+    { section: "#proof", content: ".proof-inner", screenshot: "proof-centered.png" },
+  ]) {
+    await page.locator(item.section).evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
+    await page.waitForTimeout(850);
+    await page.evaluate(() => document.activeElement?.blur());
+    const box = await page.locator(item.content).boundingBox();
+    expect(box).not.toBeNull();
+    const centerOffset = Math.abs(box.y + (box.height / 2) - (viewport.height / 2));
+    expect(centerOffset).toBeLessThanOrEqual(40);
+    await page.screenshot({ path: resolve(evidenceDir, item.screenshot), fullPage: false });
+  }
+
+  await expect(errors).toEqual([]);
+});
+
 test("검증 안내서가 공개 경로에서 열림", async ({ page }) => {
   const errors = await captureConsole(page);
   await page.setViewportSize({ width: 1366, height: 768 });

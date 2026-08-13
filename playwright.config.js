@@ -1,5 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
+const localBrowserPath = process.env.ONE_LINK_BROWSER_PATH;
+
 export default defineConfig({
   testDir: "./tests",
   timeout: 30_000,
@@ -8,6 +10,7 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:4173/one-link-portfolio/",
     browserName: "chromium",
+    launchOptions: localBrowserPath ? { executablePath: localBrowserPath } : undefined,
     colorScheme: "light",
     locale: "ko-KR",
   },
