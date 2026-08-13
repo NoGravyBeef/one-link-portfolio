@@ -129,7 +129,7 @@ img { max-width: 100%; height: auto; }
 .scroll-cue {
   position: absolute; z-index: 4; left: 50%; bottom: 18px; transform: translateX(-50%);
   display: inline-flex; gap: 0.55rem; align-items: center; color: #5e6878;
-  font-size: 0.75rem; font-weight: 750; text-decoration: none;
+  font-size: 0.92rem; font-weight: 800; letter-spacing: -0.01em; text-decoration: none;
 }
 .scroll-cue span { animation: nudge 1.5s ease-in-out infinite; }
 .ambient { position: absolute; z-index: 0; border-radius: 50%; filter: blur(4px); pointer-events: none; }
