@@ -133,9 +133,6 @@ function ExperiencesSection() {
                 <strong>{item.title}</strong>
                 <span className="experience-summary">{item.summary}</span>
                 <span className="experience-strength">{item.strength}</span>
-                <span className="selection-state">
-                  <span aria-hidden="true" />{selected ? "선택됨" : "선택하기"}
-                </span>
               </button>
             );
           })}

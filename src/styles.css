@@ -153,8 +153,8 @@ img { max-width: 100%; height: auto; }
   --card-accent-a: #776cf1;
   --card-accent-b: #ec82c9;
   position: relative; min-width: 0; min-height: 138px;
-  display: grid; grid-template-columns: 32px minmax(0, 1fr) auto;
-  grid-template-areas: "num title state" "num summary summary" "strength strength strength";
+  display: grid; grid-template-columns: 32px minmax(0, 1fr);
+  grid-template-areas: "num title" "num summary" "strength strength";
   gap: 0.45rem 0.75rem; align-content: center; padding: 1.05rem 1.15rem;
   overflow: hidden; text-align: left; border: 1px solid rgba(102,94,181,0.13);
   border-radius: 22px;
@@ -223,24 +223,6 @@ img { max-width: 100%; height: auto; }
   color: #315e91; background: linear-gradient(90deg, rgba(88,225,218,0.17), rgba(123,108,239,0.1));
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.85); font-size: 0.68rem; font-weight: 800;
 }
-.selection-state {
-  grid-area: state; justify-self: end; display: inline-flex; align-items: center; gap: 0.38rem;
-  padding: 0.24rem 0.28rem 0.24rem 0.52rem; border: 1px solid rgba(101,93,178,0.12); border-radius: 999px;
-  color: #77758e; background: rgba(240,239,249,0.88);
-  box-shadow: inset 0 2px 5px rgba(66,61,125,0.08), 0 1px 0 white;
-  font-size: 0.63rem; font-weight: 780;
-}
-.selection-state > span {
-  display: block; order: 2; width: 16px; height: 16px; border-radius: 50%;
-  background: #aaa6bd; box-shadow: 0 2px 6px rgba(52,46,100,0.22), inset 0 1px 0 rgba(255,255,255,0.7);
-}
-.is-active .selection-state {
-  color: white; border-color: transparent;
-  background: linear-gradient(100deg, var(--card-accent-a), var(--card-accent-b));
-  box-shadow: 0 6px 14px rgba(100,88,199,0.25), inset 0 1px 0 rgba(255,255,255,0.28);
-}
-.is-active .selection-state > span { background: white; }
-
 .experience-detail {
   padding: clamp(1.1rem, 2vw, 1.55rem); border-radius: var(--radius-lg);
   border: 1px solid rgba(23,35,61,0.12); background: rgba(255,255,255,0.88); box-shadow: var(--shadow);
