@@ -1,0 +1,12 @@
+Automated browser checks
+
+1366x768: pass
+1920x1080: pass
+horizontal overflow: 0
+console errors: 0
+mouse click: pass
+keyboard Enter: pass
+keyboard Space: pass
+verification page: pass
+responsive 390x844: pass
+reduced motion: pass
