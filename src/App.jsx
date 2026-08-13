@@ -132,7 +132,6 @@ function ExperiencesSection() {
                 <span className="experience-number">0{item.id}</span>
                 <strong>{item.title}</strong>
                 <span className="experience-summary">{ }</span>
-                <span className="experience-strength">{item.strength}</span>
               </button>
             );
           })}
