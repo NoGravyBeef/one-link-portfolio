@@ -157,8 +157,8 @@ img { max-width: 100%; height: auto; }
   --card-accent-b: #ec82c9;
   position: relative; min-width: 0; min-height: 126px;
   display: grid; grid-template-columns: 32px minmax(0, 1fr);
-  grid-template-areas: "num title" "num summary";
-  gap: 0.3rem 0.8rem; align-content: center; padding: 1.2rem 1.2rem 1.42rem;
+  grid-template-areas: "num title";
+  gap: 0.8rem; align-content: center; padding: 1.2rem 1.2rem 1.42rem;
   overflow: hidden; text-align: left; border: 1px solid rgba(102,94,181,0.13);
   border-radius: 22px;
   background:
@@ -219,8 +219,6 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 8px 18px rgba(99,87,205,0.28), inset 0 1px 0 rgba(255,255,255,0.38);
 }
 .experience-button strong { grid-area: title; font-size: 1rem; line-height: 1.25; }
-.experience-summary { grid-area: summary; color: var(--muted); font-size: 0.78rem; line-height: 1.5; overflow-wrap: anywhere; }
-.experience-summary:empty { display: none; }
 .experience-detail {
   min-width: 0; padding: clamp(1.1rem, 2vw, 1.55rem); border-radius: var(--radius-lg);
   border: 1px solid rgba(23,35,61,0.12); background: rgba(255,255,255,0.88); box-shadow: var(--shadow);

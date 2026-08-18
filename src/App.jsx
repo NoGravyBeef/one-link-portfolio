@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { experiences, qualityChecks, scope } from "./data/content";
+import { experiences, profile, qualityChecks, scope } from "./data/content";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,8 +39,8 @@ function IntroSection() {
       <div className="intro-grid section-inner">
         <div className="intro-copy reveal-group">
           <p className="eyebrow">ONE LINK PORTFOLIO · INTRO</p>
-          <h1 id="intro-title">[소개 문장 입력]</h1>
-          <p className="intro-lede">[활동을 설명하는 문장 입력]</p>
+          <h1 id="intro-title">{profile.headline}</h1>
+          <p className="intro-lede">{profile.description}</p>
           <div className="strength-chips" aria-label="강점 세 가지">
             {experiences.map((item) => <span key={item.id}>{item.strength}</span>)}
           </div>
@@ -48,7 +48,7 @@ function IntroSection() {
             <span className="status-dot" aria-hidden="true" />
             <div>
               <span>확인 가능한 근거</span>
-              <strong>경험 1에 공개 가능한 근거를 연결합니다.</strong>
+              <strong>KiCad로 4개의 학습용 PCB 설계와 제작 데이터를 완성했습니다.</strong>
             </div>
           </div>
         </div>
@@ -131,7 +131,6 @@ function ExperiencesSection() {
               >
                 <span className="experience-number">0{item.id}</span>
                 <strong>{item.title}</strong>
-                <span className="experience-summary">{ }</span>
               </button>
             );
           })}
@@ -180,7 +179,7 @@ function ProofSection() {
             <span className="frame-label">BEFORE</span>
             <div className="frame-placeholder">
               <span aria-hidden="true">01</span>
-              <p>실제 결함을 발견한 뒤<br />수정 전 화면을 연결합니다.</p>
+              <p>1366×768에서 장식 배경이<br />섹션 너비를 109px 넘었습니다.</p>
             </div>
           </article>
           <div className="proof-arrow" aria-hidden="true">→</div>
@@ -188,7 +187,7 @@ function ProofSection() {
             <span className="frame-label">AFTER</span>
             <div className="frame-placeholder">
               <span aria-hidden="true">02</span>
-              <p>같은 해상도와 위치에서<br />수정 후 화면을 연결합니다.</p>
+              <p>배경 위치와 이동 범위를 조정해<br />가로 넘침을 0건으로 줄였습니다.</p>
             </div>
           </article>
         </div>

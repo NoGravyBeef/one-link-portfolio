@@ -62,7 +62,7 @@ export default function VerificationPage() {
         <section className="verification-section" aria-labelledby="status-title">
           <div className="verification-heading">
             <p className="eyebrow">CURRENT STATUS</p>
-            <h2 id="status-title">구현 후 채울 검사 결과</h2>
+            <h2 id="status-title">현재 검사 결과</h2>
           </div>
           <div className="status-grid">
             {statusItems.map(([item, result], index) => (
@@ -78,9 +78,9 @@ export default function VerificationPage() {
             <p className="block-label">PRIVACY</p>
             <h2>공개하지 않을 정보</h2>
             <ul>
-              <li>실명·학교·얼굴</li>
-              <li>주소·전화번호·이메일</li>
-              <li>브라우저 계정명·로컬 경로</li>
+              <li>개인정보</li>
+              <li>계정 정보</li>
+              <li>타인의 개인 정보</li>
             </ul>
           </article>
           <article className="verification-block danger-block">
