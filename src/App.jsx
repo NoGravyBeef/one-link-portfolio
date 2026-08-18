@@ -114,7 +114,7 @@ function ExperiencesSection() {
         <div className="section-heading reveal-group">
           <p className="eyebrow">EXPERIENCE · STRENGTH</p>
           <h2 id="experiences-title">경험으로 확인하는 강점</h2>
-          <p>요약 버튼을 선택하면 아래 상세 본문이 같은 자리에서 바뀝니다.</p>
+          <p>경험 버튼을 선택하면 아래 상세 본문이 같은 자리에서 바뀝니다.</p>
         </div>
 
         <div className="experience-buttons reveal-group" aria-label="경험 선택">
@@ -131,6 +131,7 @@ function ExperiencesSection() {
               >
                 <span className="experience-number">0{item.id}</span>
                 <strong>{item.title}</strong>
+                <span className="experience-strength">{item.strength}</span>
               </button>
             );
           })}
