@@ -78,12 +78,13 @@ function IntroSection() {
   );
 }
 
-function DetailBlock({ number, title, children, variant = "neutral", className = "" }) {
+function DetailBlock({ idPrefix, number, title, children, variant = "neutral", className = "" }) {
+  const headingId = `detail-${idPrefix}-${number}`;
   return (
-    <section className={`detail-block ${variant} ${className}`.trim()} aria-labelledby={`detail-${number}`}>
+    <section className={`detail-block ${variant} ${className}`.trim()} aria-labelledby={headingId}>
       <div className="detail-heading">
         <span aria-hidden="true">{number}</span>
-        <h3 id={`detail-${number}`}>{title}</h3>
+        <h3 id={headingId}>{title}</h3>
       </div>
       <p>{children}</p>
     </section>
@@ -93,17 +94,18 @@ function DetailBlock({ number, title, children, variant = "neutral", className =
 function ExperiencesSection() {
   const [activeId, setActiveId] = useState(1);
   const detailRef = useRef(null);
-  const active = experiences.find((item) => item.id === activeId);
 
   useLayoutEffect(() => {
     if (!detailRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const activePanel = detailRef.current.querySelector(".experience-detail.is-current");
+    if (!activePanel) return undefined;
     const context = gsap.context(() => {
       gsap.fromTo(
         ".detail-block",
         { autoAlpha: 0, y: 12 },
         { autoAlpha: 1, y: 0, duration: 0.36, stagger: 0.045, ease: "power2.out", clearProps: "all" },
       );
-    }, detailRef);
+    }, activePanel);
     return () => context.revert();
   }, [activeId]);
 
@@ -137,28 +139,41 @@ function ExperiencesSection() {
           })}
         </div>
 
-        <article
+        <div
           id="experience-detail"
-          className="experience-detail"
+          className="experience-detail-stack"
           aria-live="polite"
-          aria-labelledby="experience-detail-title"
+          aria-atomic="true"
           ref={detailRef}
           data-testid="experience-detail"
         >
-          <div className="detail-title-row">
-            <div>
-              <p className="block-label">SELECTED EXPERIENCE</p>
-              <h3 id="experience-detail-title">{active.title} 상세 · {active.strength}</h3>
-            </div>
-            <span className="detail-badge">0{active.id}</span>
-          </div>
-          <div className="detail-grid">
-            <DetailBlock number="01" title="상황">{active.situation}</DetailBlock>
-            <DetailBlock number="02" title="행동" variant="action">{active.action}</DetailBlock>
-            <DetailBlock number="03" title="결과" variant="result" className="half">{active.result}</DetailBlock>
-            <DetailBlock number="04" title="공개 가능한 근거" variant="evidence" className="half">{active.evidence}</DetailBlock>
-          </div>
-        </article>
+          {experiences.map((item) => {
+            const selected = item.id === activeId;
+            const idPrefix = `experience-${item.id}`;
+            return (
+              <article
+                key={item.id}
+                className={`experience-detail ${selected ? "is-current" : ""}`}
+                aria-hidden={selected ? undefined : true}
+                aria-labelledby={selected ? "experience-detail-title" : undefined}
+              >
+                <div className="detail-title-row">
+                  <div>
+                    <p className="block-label">SELECTED EXPERIENCE</p>
+                    <h3 id={selected ? "experience-detail-title" : undefined}>{item.title} 상세 · {item.strength}</h3>
+                  </div>
+                  <span className="detail-badge">0{item.id}</span>
+                </div>
+                <div className="detail-grid">
+                  <DetailBlock idPrefix={idPrefix} number="01" title="상황">{item.situation}</DetailBlock>
+                  <DetailBlock idPrefix={idPrefix} number="02" title="행동" variant="action">{item.action}</DetailBlock>
+                  <DetailBlock idPrefix={idPrefix} number="03" title="결과" variant="result" className="half">{item.result}</DetailBlock>
+                  <DetailBlock idPrefix={idPrefix} number="04" title="공개 가능한 근거" variant="evidence" className="half">{item.evidence}</DetailBlock>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

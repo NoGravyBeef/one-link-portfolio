@@ -57,12 +57,20 @@ test("경험 선택이 클릭·Enter·Space에서 작동함", async ({ page }) =
 
   const buttons = page.locator(".experience-button");
   await expect(buttons).toHaveCount(3);
+  const detailStack = page.locator("#experience-detail");
+  const initialDetailBox = await detailStack.boundingBox();
+  const initialSectionBox = await page.locator("#experiences").boundingBox();
   for (let index = 0; index < 3; index += 1) {
     await buttons.nth(index).click();
-    await expect(page.locator(".detail-block")).toHaveCount(4);
-    for (const block of await page.locator(".detail-block p").all()) {
+    await expect(page.locator(".experience-detail.is-current")).toHaveCount(1);
+    await expect(page.locator(".experience-detail.is-current .detail-block")).toHaveCount(4);
+    for (const block of await page.locator(".experience-detail.is-current .detail-block p").all()) {
       expect((await block.textContent()).trim().length).toBeGreaterThan(0);
     }
+    const detailBox = await detailStack.boundingBox();
+    const sectionBox = await page.locator("#experiences").boundingBox();
+    expect(Math.abs(detailBox.height - initialDetailBox.height)).toBeLessThanOrEqual(1);
+    expect(Math.abs(sectionBox.height - initialSectionBox.height)).toBeLessThanOrEqual(1);
   }
   await buttons.nth(1).click();
   await expect(page.locator("#experience-detail-title")).toContainText("경험 2 상세");

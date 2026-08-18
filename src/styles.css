@@ -229,10 +229,16 @@ img { max-width: 100%; height: auto; }
   background: linear-gradient(135deg, var(--card-accent-a), var(--card-accent-b));
   box-shadow: 0 0 0 3px rgba(119,108,241,0.09);
 }
-.experience-detail {
-  min-width: 0; padding: clamp(1.1rem, 2vw, 1.55rem); border-radius: var(--radius-lg);
-  border: 1px solid rgba(23,35,61,0.12); background: rgba(255,255,255,0.88); box-shadow: var(--shadow);
+.experience-detail-stack {
+  min-width: 0; display: grid;
 }
+.experience-detail {
+  grid-area: 1 / 1; min-width: 0; padding: clamp(1.1rem, 2vw, 1.55rem); border-radius: var(--radius-lg);
+  border: 1px solid rgba(23,35,61,0.12); background: rgba(255,255,255,0.88); box-shadow: var(--shadow);
+  visibility: hidden; opacity: 0; pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.experience-detail.is-current { z-index: 1; visibility: visible; opacity: 1; pointer-events: auto; }
 .detail-title-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.85rem; }
 .detail-title-row > div { min-width: 0; }
 .detail-title-row .block-label { margin-bottom: 0.35rem; }
